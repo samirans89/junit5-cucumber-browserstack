@@ -1,0 +1,32 @@
+{
+  "user": "abhisingh5",
+  "key": "E9yopbnGog6knndmwTnL",
+  "capabilities": {
+    "project": "BrowserStack",
+    "build": "JUnit5 + Cucumber Parallel Test",
+    "browserstack.debug": true
+  },
+  "environments": [
+    {
+      "os": "Windows",
+      "os_version": "10",
+      "browser": "Internet Explorer",
+      "browser_version": "11.0"
+    }, {
+      "os": "Windows",
+      "os_version": "10",
+      "browser": "Chrome",
+      "browser_version": "86.0"
+    }, {
+      "os": "OS X",
+      "os_version": "Catalina",
+      "browserName": "Safari",
+      "browser_version": "13.1"
+    }, {
+      "os": "OS X",
+      "os_version": "High Sierra",
+      "browser": "Firefox",
+      "browser_version": "83.0"
+    }
+  ]
+}
