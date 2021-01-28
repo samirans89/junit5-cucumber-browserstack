@@ -124,7 +124,7 @@
                                 </property>
                                 <property>
                                     <name>cucumber.filter.tags</name>
-                                    <value>@Local</value>
+                                    <value>not @Local</value>
                                 </property>
                                 <property>
                                     <name>config</name>
@@ -151,6 +151,10 @@
                                 <property>
                                     <key>cucumber.publish.quiet</key>
                                     <value>true</value>
+                                </property>
+                                <property>
+                                    <name>cucumber.filter.tags</name>
+                                    <value>not @Local</value>
                                 </property>
                                 <property>
                                     <key>config</key>

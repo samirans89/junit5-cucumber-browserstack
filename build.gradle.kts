@@ -31,7 +31,7 @@ tasks {
         systemProperty("cucumber.publish.quiet", "true")
         systemProperty("cucumber.execution.parallel.config.fixed.parallelism", "4")
         systemProperty("cucumber.execution.parallel.config.strategy", "fixed")
-        systemProperty("cucumber.filter.tags", "@Local")
+        systemProperty("cucumber.filter.tags", "not @Local")
         systemProperty("cucumber.plugin", "json:build/reports/cucumber.json")
         systemProperty("config","single.config.json")
         useJUnitPlatform {
@@ -43,6 +43,7 @@ tasks {
         main = "com.browserstack.ParallelTest"
         classpath = sourceSets["test"].runtimeClasspath
         systemProperty("config","parallel.config.json")
+        systemProperty("cucumber.filter.tags", "not @Local")
         systemProperty("cucumber.publish.quiet","true")
     }
     task("local_test", JavaExec::class) {
@@ -53,4 +54,5 @@ tasks {
         systemProperty("cucumber.publish.quiet","true")
         systemProperty("cucumber.filter.tags","@Local")
     }
+
 }
