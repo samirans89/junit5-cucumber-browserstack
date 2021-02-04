@@ -21,6 +21,7 @@
         <json-simple.version>1.1.1</json-simple.version>
         <parallel-scenarios>4</parallel-scenarios>
         <parallel-scenarios-execution-enabled>true</parallel-scenarios-execution-enabled>
+        <aspectj.version>1.9.1</aspectj.version>
     </properties>
 
     <dependencies>
@@ -90,7 +91,28 @@
             <version>3.11</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-cucumber6-jvm</artifactId>
+            <version>2.13.8</version>
+        </dependency>
+
+
     </dependencies>
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.10.0</version>
+                <configuration>
+                    <reportVersion>2.13.8</reportVersion>
+                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <profiles>
         <profile>
             <id>single</id>
@@ -102,6 +124,11 @@
                         <version>${maven-surefire-plugin.version}</version>
                         <configuration>
                             <systemProperties>
+                                <testFailureIgnore>false</testFailureIgnore>
+                                <argLine>
+                                    -Dfile.encoding=UTF-8
+                                    -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                                </argLine>
                                 <property>
                                     <name>cucumber.execution.parallel.enabled</name>
                                     <value>${parallel-scenarios-execution-enabled}</value>
@@ -112,7 +139,7 @@
                                 </property>
                                 <property>
                                     <name>cucumber.plugin</name>
-                                    <value>json:target/reports/cucumber.json</value>
+                                    <value>html:target/cucumber-html-reports.html,io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm</value>
                                 </property>
                                 <property>
                                     <name>cucumber.execution.parallel.config.fixed.parallelism</name>
@@ -124,14 +151,25 @@
                                 </property>
                                 <property>
                                     <name>cucumber.filter.tags</name>
-                                    <value>not @Local</value>
+                                    <value>@Local</value>
                                 </property>
                                 <property>
                                     <name>config</name>
                                     <value>single.config.json</value>
                                 </property>
+                                <property>
+                                    <name>allure.results.directory</name>
+                                    <value>${project.build.directory}/allure-results</value>
+                                </property>
                             </systemProperties>
                         </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.aspectj</groupId>
+                                <artifactId>aspectjweaver</artifactId>
+                                <version>${aspectj.version}</version>
+                            </dependency>
+                        </dependencies>
                     </plugin>
                 </plugins>
             </build>
@@ -155,6 +193,10 @@
                                 <property>
                                     <name>cucumber.filter.tags</name>
                                     <value>not @Local</value>
+                                </property>
+                                <property>
+                                    <key>cucumber.plugin</key>
+                                    <value>html:target/cucumber-html-reports.html</value>
                                 </property>
                                 <property>
                                     <key>config</key>
@@ -181,6 +223,10 @@
                                 <property>
                                     <key>cucumber.publish.quiet</key>
                                     <value>true</value>
+                                </property>
+                                <property>
+                                    <key>cucumber.plugin</key>
+                                    <value>html:target/cucumber-html-reports.html</value>
                                 </property>
                                 <property>
                                     <key>cucumber.filter.tags</key>

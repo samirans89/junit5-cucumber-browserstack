@@ -11,6 +11,7 @@ JUnit 5 with Cucumber Integration with BrowserStack.
 * Clone the repo
 * Install dependencies `mvn install`
 * Update *.conf.json files inside the `src/test/resources/conf` directory with your [BrowserStack Username and Access Key](https://www.browserstack.com/accounts/settings).
+* Clone and Run [Browserstack Canonical App](https://github.com/browserstack/browserstack-demo-app).
 
 ## Running your tests
 * Run Tests with single browsers
@@ -18,6 +19,11 @@ JUnit 5 with Cucumber Integration with BrowserStack.
   - Single Browser Without Parallel Scenarios: `mvn install -P single -Dparallel-scenarios-execution-enabled=false`
 * Parallel Tests: `mvn compile exec:java -P parallel` or `gradle parallel_test`
 * Local Tests: `mvn compile exec:java -P local` or `gradle local_test`
+
+## Generating Reports for single browser test
+* Generate Report: ```mvn allure:report```
+* Serve Report: ```mvn allure:serve```
+
 
 Understand how many parallel sessions you need by using our [Parallel Test Calculator](https://www.browserstack.com/automate/parallel-calculator?ref=github)
 
