@@ -191,7 +191,7 @@
                                     <value>true</value>
                                 </property>
                                 <property>
-                                    <name>cucumber.filter.tags</name>
+                                    <key>cucumber.filter.tags</key>
                                     <value>not @Local</value>
                                 </property>
                                 <property>
