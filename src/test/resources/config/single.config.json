@@ -5,6 +5,7 @@
     "project": "BrowserStack",
     "build": "JUnit5 + Cucumber Single Test",
     "browserstack.debug": true,
+    "browserstack.local": true,
     "os": "Windows",
     "os_version": "10",
     "browser": "Chrome",
