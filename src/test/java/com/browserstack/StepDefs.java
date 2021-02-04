@@ -33,7 +33,9 @@ public class StepDefs {
         JSONObject config;
         JSONParser parser = new JSONParser();
         DesiredCapabilities caps = new DesiredCapabilities();
-        if(System.getProperty("parallel") != null) {
+        if(System.getenv("caps")!= null) {
+            config = (JSONObject) parser.parse(System.getenv("caps"));
+        } else if(System.getProperty("parallel") != null) {
             config = ParallelTest.threadLocalValue.get();
         } else if(System.getProperty("config") != null) {
             config = (JSONObject) parser.parse(new FileReader(String.format("src/test/resources/config/%s", System.getProperty("config"))));

@@ -18,12 +18,15 @@ public class ParallelTest {
     public static void main(String args[]) throws IOException, ParseException {
         JSONObject config;
         JSONParser parser = new JSONParser();
-        if(System.getProperty("config") != null) {
+        if(System.getenv("caps")!= null) {
+            config = (JSONObject) parser.parse(System.getenv("caps"));
+        } else if(System.getProperty("config") != null) {
             config = (JSONObject) parser.parse(new FileReader(String.format("src/test/resources/config/%s", System.getProperty("config"))));
         } else {
             config = (JSONObject) parser.parse(new FileReader("src/test/resources/config/parallel.config.json"));
         }
         JSONArray environments = (JSONArray)config.get("environments");
+        System.out.println(config.toJSONString());
         for (Object obj: environments) {
             Map<String, String> envCapabilities = (Map<String, String>) obj;
             JSONObject capabilities = new JSONObject();
