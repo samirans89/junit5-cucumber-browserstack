@@ -1,6 +1,6 @@
 {
-  "user": "abhisingh5",
-  "key": "E9yopbnGog6knndmwTnL",
+  "user": "BROWSERSTACK_USERNAME",
+  "key": "BROWSERSTACK_ACCESS_KEY",
   "capabilities": {
     "project": "BrowserStack",
     "build": "JUnit5 + Cucumber Parallel Test",
